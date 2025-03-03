@@ -16,8 +16,8 @@ pub fn clean() {
     fs::remove_dir_all("./out").unwrap_or_else(|e| {
         err!("Failed to remove ./out: {e}");
     });
-    info!("Cleaning ./noa...");
-    fs::remove_dir_all("./noa").unwrap_or_else(|e| {
+    info!("Cleaning ./package-list...");
+    fs::remove_dir_all("./package-list").unwrap_or_else(|e| {
         err!("Failed to remove ./noa: {e}");
     });
 
