@@ -8,6 +8,5 @@ blake3 = "1.6.1"
 clap = { version = "4.5.31", features = ["derive"] }
 serde = { version = "1.0.218", features = ["derive"] }
 tar = "0.4.44"
-tokio = { version = "1.43.0", features = ["full"] }
 toml = "0.8.20"
 xz2 = "0.1.7"
