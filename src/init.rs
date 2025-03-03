@@ -32,10 +32,10 @@ pub fn init() -> Result<(), Box<dyn std::error::Error>> {
         info!("Created {}", toml_path.display());
     }
 
-    let pkglist_path = Path::new("./noa");
+    let pkglist_path = Path::new("./package-list");
     if pkglist_path.exists() {
         warn!(
-            "{} is alredy exists! recreate ./noa?",
+            "{} is alredy exists! recreate ./package-list?",
             pkglist_path.display()
         );
         let mut input = String::new();
@@ -43,12 +43,12 @@ pub fn init() -> Result<(), Box<dyn std::error::Error>> {
         io::stdout().flush().unwrap();
         io::stdin().read_line(&mut input).unwrap();
         if matches!(input.trim(), "y" | "yes" | "") {
-            fs::remove_dir_all("./noa/")?;
-            fs::create_dir_all("./noa/package-list/")?;
+            fs::remove_dir_all("./package-list/")?;
+            fs::create_dir_all("./package-list/")?;
             info!("Created {}", pkglist_path.display());
         }
     } else {
-        fs::create_dir_all("./noa/package-list/")?;
+        fs::create_dir_all("./package-list/")?;
         info!("Created {}", pkglist_path.display());
     }
 

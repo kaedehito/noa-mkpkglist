@@ -21,12 +21,12 @@ pub fn build() -> Result<(), Box<dyn std::error::Error>> {
 
     let mut tar_builder = Builder::new(xz_encoder);
 
-    let packagelist = Path::new("./noa/package-list/");
+    let packagelist = Path::new("./package-list/");
 
     for n in packagelist.read_dir()? {
         let path = n?;
         info!("Compressing {}...", path.path().display());
-        tar_builder.append_path(path.path())?;
+        tar_builder.append_dir_all(path.path(), path.path())?;
     }
 
     tar_builder.into_inner()?.finish()?;
@@ -46,7 +46,7 @@ pub fn build() -> Result<(), Box<dyn std::error::Error>> {
 
     let hash = hasher.finalize();
 
-    info!("Generated BLEAKE3 hash: {}", hash.to_hex());
+    info!("Generated BLAKE3 hash: {}", hash.to_hex());
 
     let mut hash_file = fs::File::create("./out/packagelist.hash")?;
     hash_file.write_all(hash.to_string().as_bytes())?;
