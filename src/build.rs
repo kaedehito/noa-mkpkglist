@@ -48,9 +48,9 @@ pub fn build() -> Result<(), Box<dyn std::error::Error>> {
 
     info!("Generated BLAKE3 hash: {}", hash.to_hex());
 
-    let mut hash_file = fs::File::create("./out/packagelist.hash")?;
+    let mut hash_file = fs::File::create("./out/packagelist.blake3")?;
     hash_file.write_all(hash.to_string().as_bytes())?;
-    info!("Write to ./out/packagelist.hash");
+    info!("Write to ./out/packagelist.blake3");
 
     info!("Finish!");
 
